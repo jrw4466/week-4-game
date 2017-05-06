@@ -1,8 +1,7 @@
 var wins = 1;
-var loses = 1;
+var losses = 1;
+var score = 0;
 
-//var random2 = Math.floor(Math.random() * 12) + 1;
-//console.log(random2);
 
 
 $(document).ready(function() {
@@ -12,9 +11,21 @@ $(document).ready(function() {
 
 
 	$(".btn").on("click", function () {
-		//var images = $(this).closest("#images");
 		var amount = +$(this).val();
-		$("#score2").text(amount);
+		score = amount + score;
+		$("#score2").html(score);
+		if (score === random1) {
+			$("#wins").html(wins++);
+			score = 0;
+			random1 = Math.floor(Math.random() * (120 - 19) + 19);
+			$("#randomNumber").text(random1);
+		}
+		if (score > random1) {
+			$("#losses").html(losses++);
+			score = 0;
+			random1 = Math.floor(Math.random() * (120 - 19) + 19);
+			$("#randomNumber").text(random1);
+		}
 	});
 });
 
